@@ -18,8 +18,10 @@ Cuda Toolkit | cuda-repo-wsl-ubuntu-12-6-local_12.6.3-1_amd64.deb
 
 psutil
 
-# Installing Cuda Toolkit 
-This can be a bit annoying to install, so here's a walkthrough.
+-----
+
+> [!TIP]
+> Installing Cuda Toolkit can be a bit annoying, so here's a walkthrough.
 
 Sign up for a developer account. Then...
 
@@ -41,4 +43,10 @@ export CPATH=$CUDA_HOME/include:$CPATH
 export LIBRARY_PATH=$CUDA_HOME/lib64/stubs:$LIBRARY_PATH
 ```
 9. ```source ~/.bashrc```
-9. Check that it works with ```nvcc --version```
+10. Check that it works with ```nvcc --version```
+
+# Usage
+1. Git clone this repo.
+2. Place a .txt file in the text_file folder (the more text the better).
+3. Open Terminal in the main folder.
+4. 
