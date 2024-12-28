@@ -67,13 +67,13 @@ This will train checkpoints with the file that you have put in the text_file fol
 | --model_dir |	Directory to save model checkpoints and processor. | `checkpoints` |
 | --batch_size | Number of samples per training batch. | `64` |
 | --epochs | Total number of training epochs. | `50` |
-| --embedding_dim | Size of the embedding vector. | **256** |
-| --rnn_units | Number of LSTM units in each layer. | **512** |
-| --num_layers | Number of LSTM layers. | **2** |
-| --seq_length | Length of input sequences for training. | **50** |
+| **--embedding_dim** | Size of the embedding vector. | **256** |
+| **--rnn_units** | Number of LSTM units in each layer. | **512** |
+| **--num_layers** | Number of LSTM layers. | **2** |
+| **--seq_length** | Length of input sequences for training. | **50** |
 
 Example:
-`python train.py --input_file data/poetry.txt --model_dir checkpoints --epochs 20`
+`python3 train.py --input_file data/lordoftherings.txt --model_dir checkpoints --epochs 20`
 
 ## Generating
 **If you have changed any of the values in bold during training - make sure that you specify the same argument AND values when generating!**
@@ -84,9 +84,15 @@ Example:
 | --num_words	| Number of words to generate. | `100` |
 | --temperature	| Controls randomness in text generation. Range: 0.1–10. | `1.0` |
 | --seed_text	| Starting text to seed the generation. | *User Input* |
-| --embedding_dim	| Size of the embedding vector (must match training). | **256** |
-| --rnn_units	| Number of LSTM units per layer (must match training). | **512** |
-| --num_layers	| Number of LSTM layers (must match training). | **2** |
-| --seq_length	| Length of input sequences (must match training). | **50** |
+| **--embedding_dim**	| Size of the embedding vector (must match training). | **256** |
+| **--rnn_units**	| Number of LSTM units per layer (must match training). | **512** |
+| **--num_layers**	| Number of LSTM layers (must match training). | **2** |
+| **--seq_length**	| Length of input sequences (must match training). | **50** |
 
 Example:
+`python3 generate.py --model_dir checkpoints --epoch 23 --num_words 2000 --temperature 0.8--seed_text "Gandalf jumped into a "`
+
+# Final Notes:
+- If no --seed_text argument is included it will prompt you - BUT you can just press enter and it will run without your input.
+- A high --temperature is absolute garbage but great for generating... passphrases...? ```somewhere bluebell good! similarly cooling repayment obvious?” centuries ropes generous.```
+- I don't know what I'm doing... So, if you have suggestions or improvements, please fork the repository, make changes, and submit a pull request.
