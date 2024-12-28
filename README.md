@@ -67,12 +67,12 @@ This will start to train checkpoints with the file that you have put in the text
 | --model_dir |	Directory to save model checkpoints and processor. | `checkpoints` |
 | --batch_size | Number of samples per training batch. | `64` |
 | --epochs | Total number of training epochs. | `50` |
-| **--embedding_dim** | Size of the embedding vector. | **256** |
-| **--rnn_units** | Number of LSTM units in each layer. | **512** |
-| **--num_layers** | Number of LSTM layers. | **2** |
-| **--seq_length** | Length of input sequences for training. | **50** |
+| **--embedding_dim** | **Size of the embedding vector.** | **256** |
+| **--rnn_units** | **Number of LSTM units in each layer.** | **512** |
+| **--num_layers** | **Number of LSTM layers.** | **2** |
+| **--seq_length** | **Length of input sequences for training.** | **50** |
 
-Example:
+Example:  
 `python3 train.py --input_file data/lordoftherings.txt --model_dir checkpoints --epochs 20`
 
 ## Generating
@@ -84,12 +84,12 @@ Example:
 | --num_words	| Number of words to generate. | `100` |
 | --temperature	| Controls randomness in text generation. Range: 0.1–10. | `1.0` |
 | --seed_text	| Starting text to seed the generation. | *User Input* |
-| **--embedding_dim**	| Size of the embedding vector (must match training). | **256** |
-| **--rnn_units**	| Number of LSTM units per layer (must match training). | **512** |
-| **--num_layers**	| Number of LSTM layers (must match training). | **2** |
-| **--seq_length**	| Length of input sequences (must match training). | **50** |
+| **--embedding_dim**	| **Size of the embedding vector (must match training).** | **256** |
+| **--rnn_units**	| **Number of LSTM units per layer (must match training).** | **512** |
+| **--num_layers**	| **Number of LSTM layers (must match training).** | **2** |
+| **--seq_length**	| **Length of input sequences (must match training).** | **50** |
 
-Example:
+Example:  
 `python3 generate.py --model_dir checkpoints --epoch 23 --num_words 2000 --temperature 0.8--seed_text "Gandalf jumped into a "`
 
 # Final Notes:
