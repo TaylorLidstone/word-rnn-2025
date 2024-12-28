@@ -45,8 +45,15 @@ export LIBRARY_PATH=$CUDA_HOME/lib64/stubs:$LIBRARY_PATH
 9. ```source ~/.bashrc```
 10. Check that it works with ```nvcc --version```
 
-# Usage
+# Basic Usage
 1. Git clone this repo.
 2. Place a .txt file in the text_file folder (the more text the better).
 3. Open Terminal in the main folder.
-4. 
+4. `python3 train.py --input_file text_file/[yourfilename].txt --model_dir checkpoints`
+This will train checkpoints with the file that you have put in the text_file folder, and it takes a **LONG TIME**. You can cancel the training at any point, and if you run the program again, it will resume training from the last checkpoint.
+> [!CAUTION]
+> When you first run this program, or run it after deleting your checkpoints. You will see the following message.  
+> *INFO:root:No checkpoints found, starting from scratch.*  
+> Please be aware that this step can take up to 20 minutes to run, depending on the size of the .txt file, so be patient!
+5. Once the training has finished or you have any checkpoint you can begin generating - (There is a difference, Epoch 1 will be noticibly less trained than Epoch 50, for example).
+6. `python3 generate.py --model_dir checkpoints --num_words 2000 --temperature 0.7`
