@@ -1,4 +1,4 @@
-# word-rnn-2025
+# Word-RNN-2025
 A self-hosted word-rnn that actually works in 2025! 
 
 Back in the day I was a massive fan of  [char-rnn-tensorflow](https://github.com/sherjilozair/char-rnn-tensorflow) and [word-rnn-tensorflow](https://github.com/hunkim/word-rnn-tensorflow). Yeah, I know ChatGPT exists now, but the random and weird outputs that these early programs produced were infinitely more entertaining.
@@ -51,9 +51,42 @@ export LIBRARY_PATH=$CUDA_HOME/lib64/stubs:$LIBRARY_PATH
 3. Open Terminal in the main folder.
 4. `python3 train.py --input_file text_file/[yourfilename].txt --model_dir checkpoints`
 This will train checkpoints with the file that you have put in the text_file folder, and it takes a **LONG TIME**. You can cancel the training at any point, and if you run the program again, it will resume training from the last checkpoint.
-> [!CAUTION]
-> When you first run this program, or run it after deleting your checkpoints. You will see the following message.  
-> *INFO:root:No checkpoints found, starting from scratch.*  
-> Please be aware that this step can take up to 20 minutes to run, depending on the size of the .txt file, so be patient!
 5. Once the training has finished or you have any checkpoint you can begin generating - (There is a difference, Epoch 1 will be noticibly less trained than Epoch 50, for example).
 6. `python3 generate.py --model_dir checkpoints --num_words 2000 --temperature 0.7`
+> [!CAUTION]
+> When you first run the training, or run it after deleting your checkpoints. You will see the following message.  
+> *INFO:root:No checkpoints found, starting from scratch.*  
+> Please be aware that this step can take up to 20 minutes to run, depending on the size of the .txt file, so be patient!
+
+# Advanced Arguments
+## Training
+**If you change any of the values in bold - you MUST specify the same argument AND values when generating with that checkpoint!**
+| Argument | Description | Default Value |
+|----------|-------------|---------------|
+| --input_file	| Path to the input text file for training.	| *Required* |
+| --model_dir |	Directory to save model checkpoints and processor. | `checkpoints` |
+| --batch_size | Number of samples per training batch. | `64` |
+| --epochs | Total number of training epochs. | `50` |
+| --embedding_dim | Size of the embedding vector. | **256** |
+| --rnn_units | Number of LSTM units in each layer. | **512** |
+| --num_layers | Number of LSTM layers. | **2** |
+| --seq_length | Length of input sequences for training. | **50** |
+
+Example:
+`python train.py --input_file data/poetry.txt --model_dir checkpoints --epochs 20`
+
+## Generating
+**If you have changed any of the values in bold during training - make sure that you specify the same argument AND values when generating!**
+| Argument | Description | Default Value |
+|----------|-------------|---------------|
+| --model_dir | Directory containing the saved model checkpoints.	| *Required* |
+| --epoch	| Specific checkpoint epoch to load. | *Latest Epoch* |
+| --num_words	| Number of words to generate. | `100` |
+| --temperature	| Controls randomness in text generation. Range: 0.1–10. | `1.0` |
+| --seed_text	| Starting text to seed the generation. | *User Input* |
+| --embedding_dim	| Size of the embedding vector (must match training). | **256** |
+| --rnn_units	| Number of LSTM units per layer (must match training). | **512** |
+| --num_layers	| Number of LSTM layers (must match training). | **2** |
+| --seq_length	| Length of input sequences (must match training). | **50** |
+
+Example:
